@@ -4,6 +4,7 @@ global extComments
 
 extComments = true;
 load 'ProcessedDataNew.mat';
+VocData = categorical(cellstr(['à';'á';'â';'ã';'ä';'å';'¸';'æ';'ç';'è';'é';'ê';'ë';'ì';'í';'î';'ï';'ð';'ñ';'ò';'ó';'ô';'õ';'ö';'÷';'ø';'ù';'ú';'û';'ü';'ý';'þ';'ÿ';'-']));
 
 %% Reshape arrays
 idx = tagLenArray~=0;
@@ -52,12 +53,13 @@ maxEpochs = 300;
 miniBatchNum = 1;
 
 % define TimeDistributed
+ctcClasslayer = ctcClassificationLayer('ctcClass',VocData);
 netLayers = [sequenceInputLayer(inputSize)
     bilstmLayer(numHiddenUnits,'OutputMode','sequence')
     bilstmLayer(numHiddenUnits,'OutputMode','sequence')
     fullyConnectedLayer(numClasses)
     softmaxLayer
-    classificationLayer];
+    ctcClasslayer];
 
 netOptions = trainingOptions('adam', ...
     'ExecutionEnvironment','multi-gpu', ...

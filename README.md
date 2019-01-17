@@ -1,1 +1,1 @@
-# Matlab project for voice recognition
+# Matlab project for voice recognition on Voxforge database
