@@ -15,8 +15,8 @@ classdef ctcClassificationLayer < nnet.layer.ClassificationLayer
     
     methods
         function layer = ctcClassificationLayer(name,categories) 
-            % layer = sseClassificationLayer(name) creates a sum of squares
-            % error classification layer and specifies the layer name.
+            % layer = ctcClassificationLayer(name,categories) creates Connectionist Temporal Classification Layer
+            % with specifies the layer name and categories.
             layer.Name = name;
             layer.Description = 'Connectionist Temporal Classification Layer';
             

@@ -1,10 +1,10 @@
-%% Prepare data for learning
+%% Prepare data for learning train_VXFmodel
 
 global extComments 
 
 extComments = true;
 load 'ProcessedDataNew.mat';
-VocData = categorical(cellstr(['à';'á';'â';'ã';'ä';'å';'¸';'æ';'ç';'è';'é';'ê';'ë';'ì';'í';'î';'ï';'ð';'ñ';'ò';'ó';'ô';'õ';'ö';'÷';'ø';'ù';'ú';'û';'ü';'ý';'þ';'ÿ';'-']));
+VocNum = categorical([1;2;3;4;5;6;7;8;9;10;11;12;13;14;15;16;17;18;19;20;21;22;23;24;25;26;27;28;29;30;31;32;33;34]);
 
 %% Reshape arrays
 idx = tagLenArray~=0;
@@ -53,7 +53,7 @@ maxEpochs = 300;
 miniBatchNum = 1;
 
 % define TimeDistributed
-ctcClasslayer = ctcClassificationLayer('ctcClass',VocData);
+ctcClasslayer = ctcClassificationLayer('ctcClass',VocNum);
 netLayers = [sequenceInputLayer(inputSize)
     bilstmLayer(numHiddenUnits,'OutputMode','sequence')
     bilstmLayer(numHiddenUnits,'OutputMode','sequence')
